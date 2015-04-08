@@ -12,7 +12,7 @@ module TuringAuth
     end
 
     def valid?
-      github_id && github_name && email && github_token
+      [github_id, github_name, email, github_token].none?(&:nil?)
     end
 
     def as_json(options={})
@@ -41,7 +41,7 @@ module TuringAuth
     end
 
     def turing_member?
-      (gh_teams & TuringAuth::TEAMS.keys).any?
+      (gh_teams & TuringAuth::TEAMS.values).any?
     end
   end
 end
