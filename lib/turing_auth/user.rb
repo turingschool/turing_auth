@@ -41,7 +41,7 @@ module TuringAuth
     end
 
     def turing_member?
-      (gh_teams & TURING_GH_TEAMS).any?
+      (gh_teams & TuringAuth::TEAMS.keys).any?
     end
   end
 end
