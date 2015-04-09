@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["horace.d.williams@gmail.com"]
   spec.summary       = %q{Shared authentication logic for turing apps.}
   spec.description   = %q{Authentication for Turing platform built on top of github orgs and github oauth.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/turingschool/turing_auth"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "omniauth"
-  spec.add_runtime_dependency "omniauth-github"
-  spec.add_runtime_dependency "octokit"
+  spec.add_runtime_dependency "omniauth", "~> 1.0"
+  spec.add_runtime_dependency "omniauth-github", "~> 1.0"
+  spec.add_runtime_dependency "octokit", "~>3.0"
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
