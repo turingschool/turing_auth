@@ -2,6 +2,9 @@ require "turing_auth/version"
 require "turing_auth/teams"
 require "turing_auth/user"
 require "turing_auth/current_user"
+require "omniauth"
+require "omniauth/builder"
+require "omniauth-github"
 
 module TuringAuth
   def self.client_id=(client_id)

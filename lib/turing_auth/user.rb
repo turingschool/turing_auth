@@ -1,3 +1,5 @@
+require "octokit"
+
 module TuringAuth
   class User
     attr_reader :github_id, :github_name, :email, :github_token, :authed_at
