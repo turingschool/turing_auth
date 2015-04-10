@@ -14,7 +14,7 @@ module TuringAuth
     end
 
     def valid?
-      [github_id, github_name, email, github_token].none?(&:nil?)
+      [github_id, github_name, github_token].none?(&:nil?)
     end
 
     def as_json(options={})
