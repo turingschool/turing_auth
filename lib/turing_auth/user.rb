@@ -6,7 +6,7 @@ module TuringAuth
 
     def initialize(attributes)
       attributes.symbolize_keys!
-      @github_id = attributes[:github_id].to_i
+      @github_id = attributes[:github_id].to_i if attributes[:github_id]
       @github_name = attributes[:github_name]
       @email = attributes[:email]
       @github_token = attributes[:github_token]
@@ -30,20 +30,8 @@ module TuringAuth
       "Turing GH User: #{github_name}, gh id: #{github_id}, email #{email}, token: #{github_token}"
     end
 
-    def gh_client
-      Octokit::Client.new(:access_token => github_token)
-    end
-
-    def gh_teams
-      @gh_teams ||= begin
-                      gh_client.user_teams.map(&:id)
-                    rescue Octokit::NotFound
-                      []
-                    end
-    end
-
     def turing_member?
-      (gh_teams & TuringAuth::TEAMS.values).any?
+      TuringAuth::Teams.new.authorized_member_ids.include?(github_id.to_i)
     end
   end
 end
