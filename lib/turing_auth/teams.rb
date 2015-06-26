@@ -6,11 +6,16 @@ module TuringAuth
        "1409" => 1427798,
        "1410" => 1427761,
        "1412" => 1469133,
+       "1502" => 1469166,
        "owners" => 879375}
     end
 
     def gh_client
       @gh_client ||= Octokit::Client.new(:access_token => TuringAuth.admin_token)
+    end
+
+    def list_teams
+      gh_client.organization_teams("turingschool")
     end
 
     def authorized_team_ids
