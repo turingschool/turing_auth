@@ -15,7 +15,7 @@ module TuringAuth
     end
 
     def gh_client
-      @gh_client ||= Octokit::Client.new(:access_token => TuringAuth.admin_token)
+      @gh_client ||= Octokit::Client.new(access_token: TuringAuth.admin_token)
     end
 
     def list_teams
@@ -33,6 +33,18 @@ module TuringAuth
       @authorized_member_ids ||= authorized_team_ids.flat_map do |team_id|
         gh_client.team_members(team_id)
       end.map(&:id).map(&:to_i).uniq
+    end
+
+    def authorized_admins
+      @authorized_admins ||= client.team_members(admin_group_id).map do |team_member|
+        team_member[:login]
+      end
+    end
+
+    private
+
+    def admin_group_id
+      authorized_team_ids["owners"]
     end
   end
 end
