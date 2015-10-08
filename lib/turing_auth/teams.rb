@@ -36,7 +36,7 @@ module TuringAuth
     end
 
     def authorized_admins
-      @authorized_admins ||= client.team_members(admin_group_id).map do |team_member|
+      @authorized_admins ||= gh_client.team_members(admin_group_id).map do |team_member|
         team_member[:login]
       end
     end
