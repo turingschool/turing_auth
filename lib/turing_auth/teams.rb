@@ -45,7 +45,7 @@ module TuringAuth
     private
 
     def admin_group_id
-      self.class.authorized_teams["owners"]
+      self.class.authorized_teams["staff"]
     end
   end
 end
